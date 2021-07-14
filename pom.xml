@@ -15,10 +15,11 @@
   </licenses>
 
   <properties>
-    <com.squareup.retrofit2.version>2.4.0</com.squareup.retrofit2.version>
+    <com.squareup.retrofit2.version>2.9.0</com.squareup.retrofit2.version>
   </properties>
 
   <dependencies>
+
     <dependency>
       <groupId>com.squareup.retrofit2</groupId>
       <artifactId>retrofit</artifactId>
@@ -44,6 +45,13 @@
       <artifactId>junit</artifactId>
       <version>4.13.2</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+         <groupId>coherence</groupId>
+         <artifactId>coherence</artifactId>
+         <scope>system</scope>
+         <version>1.0</version>
+         <systemPath>/home/opc/Oracle/Middleware/Oracle_Home/coherence/lib/coherence.jar</systemPath>
     </dependency>
   </dependencies>
 

@@ -1,5 +1,7 @@
 package com.binance.api.client.domain.event;
 
+import java.io.Serializable;
+
 import com.binance.api.client.constant.BinanceApiConstants;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,7 +11,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TickerEvent {
+public class TickerEvent  implements Serializable {
 
     @JsonProperty("e")
     private String eventType;
@@ -108,12 +110,20 @@ public class TickerEvent {
         return priceChange;
     }
 
+    public double getPriceChangeDouble() {
+        return Double.parseDouble( priceChange );
+    }
+
     public void setPriceChange(String priceChange) {
         this.priceChange = priceChange;
     }
 
     public String getPriceChangePercent() {
         return priceChangePercent;
+    }
+
+    public double getPriceChangePercentDouble() {
+        return Double.parseDouble( priceChangePercent );
     }
 
     public void setPriceChangePercent(String priceChangePercent) {
@@ -124,12 +134,20 @@ public class TickerEvent {
         return weightedAveragePrice;
     }
 
+    public double getWeightedAveragePriceDouble() {
+        return Double.parseDouble( weightedAveragePrice );
+    }
+
     public void setWeightedAveragePrice(String weightedAveragePrice) {
         this.weightedAveragePrice = weightedAveragePrice;
     }
 
     public String getPreviousDaysClosePrice() {
         return previousDaysClosePrice;
+    }
+
+    public double getPreviousDaysClosePriceDouble() {
+        return Double.parseDouble( previousDaysClosePrice );
     }
 
     public void setPreviousDaysClosePrice(String previousDaysClosePrice) {
@@ -140,12 +158,20 @@ public class TickerEvent {
         return currentDaysClosePrice;
     }
 
+    public double getCurrentDaysClosePriceDouble() {
+        return Double.parseDouble( currentDaysClosePrice );
+    }
+
     public void setCurrentDaysClosePrice(String currentDaysClosePrice) {
         this.currentDaysClosePrice = currentDaysClosePrice;
     }
 
     public String getCloseTradesQuantity() {
         return closeTradesQuantity;
+    }
+
+    public int getCloseTradesQuantityInteger() {
+        return Integer.parseInt(closeTradesQuantity);
     }
 
     public void setCloseTradesQuantity(String closeTradesQuantity) {
@@ -156,12 +182,20 @@ public class TickerEvent {
         return bestBidPrice;
     }
 
+    public double getBestBidPriceDouble() {
+        return Double.parseDouble( bestBidPrice );
+    }
+
     public void setBestBidPrice(String bestBidPrice) {
         this.bestBidPrice = bestBidPrice;
     }
 
     public String getBestBidQuantity() {
         return bestBidQuantity;
+    }
+
+    public int getBestBidQuantityInteger() {
+        return Integer.parseInt( bestBidQuantity );
     }
 
     public void setBestBidQuantity(String bestBidQuantity) {
@@ -172,12 +206,20 @@ public class TickerEvent {
         return bestAskPrice;
     }
 
+    public double getBestAskPriceDouble() {
+        return Double.parseDouble( bestAskPrice );
+    }
+
     public void setBestAskPrice(String bestAskPrice) {
         this.bestAskPrice = bestAskPrice;
     }
 
     public String getBestAskQuantity() {
         return bestAskQuantity;
+    }
+
+    public double getBestAskQuantityDouble() {
+        return Double.parseDouble( bestAskQuantity );
     }
 
     public void setBestAskQuantity(String bestAskQuantity) {
@@ -188,12 +230,20 @@ public class TickerEvent {
         return openPrice;
     }
 
+    public double getOpenPriceDouble() {
+        return Double.parseDouble( openPrice );
+    }
+
     public void setOpenPrice(String openPrice) {
         this.openPrice = openPrice;
     }
 
     public String getHighPrice() {
         return highPrice;
+    }
+
+    public double getHighPriceDouble() {
+        return Double.parseDouble( highPrice )  ;
     }
 
     public void setHighPrice(String highPrice) {
@@ -204,6 +254,10 @@ public class TickerEvent {
         return lowPrice;
     }
 
+    public double getLowPriceDouble() {
+        return Double.parseDouble( lowPrice );
+    }
+
     public void setLowPrice(String lowPrice) {
         this.lowPrice = lowPrice;
     }
@@ -212,12 +266,20 @@ public class TickerEvent {
         return totalTradedBaseAssetVolume;
     }
 
+    public int getTotalTradedBaseAssetVolumeInteger() {
+        return Integer.parseInt( totalTradedBaseAssetVolume );
+    }
+
     public void setTotalTradedBaseAssetVolume(String totalTradedBaseAssetVolume) {
         this.totalTradedBaseAssetVolume = totalTradedBaseAssetVolume;
     }
 
     public String getTotalTradedQuoteAssetVolume() {
         return totalTradedQuoteAssetVolume;
+    }
+
+    public int getTotalTradedQuoteAssetVolumeInteger() {
+        return Integer.parseInt( totalTradedQuoteAssetVolume );
     }
 
     public void setTotalTradedQuoteAssetVolume(String totalTradedQuoteAssetVolume) {

@@ -6,13 +6,20 @@ import com.binance.api.client.domain.event.TickerEvent;
 import com.binance.api.client.domain.event.TickerEventKey;
 import com.tangosol.net.CacheFactory;
 import com.tangosol.net.NamedCache;
+import com.tangosol.net.Session;
+import com.tangosol.net.topic.NamedTopic;
+import com.tangosol.net.ValueTypeAssertion;
+import com.tangosol.net.topic.Publisher;
 
 /**
  * All market tickers channel examples.
  *
  * It illustrates how to create a stream to obtain all market tickers.
  */
-public class AllMarketTickersExample {
+public class AllMarketTickersTopic {
+
+  public static long biggerts = 0;
+  public static long currentts = 0;
 
   public static void main(String[] args) {
 
@@ -23,16 +30,20 @@ public class AllMarketTickersExample {
 
     client.onAllMarketTickersEvent(event -> {
       for(TickerEvent te : event) {
-      /*  
-        if (te.getSymbol().equals("ETHBTC")) {
-          System.out.println( te );
-        }
-      */
         map.put( new TickerEventKey( te.getEventTime(), te.getSymbol() ), te );
-      }
-      //System.out.print(te.getSymbol() + ", ");
+      
+        if (currentts < te.getEventTime() ) {
+          currentts = te.getEventTime();
+        }
 
-      System.out.print("\n#");
+      }
+      System.out.print( "\n# " + event.size() );
+      if ( biggerts == 0 || biggerts < currentts)
+      {
+        System.out.print(" - biggerts lower = " + currentts );
+        System.out.print(" - diff = " + (biggerts - currentts) );
+        biggerts = currentts;
+      }
     });
   }
 }
