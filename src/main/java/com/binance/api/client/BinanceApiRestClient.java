@@ -4,6 +4,7 @@ import com.binance.api.client.domain.account.*;
 import com.binance.api.client.domain.account.request.*;
 import com.binance.api.client.domain.general.ExchangeInfo;
 import com.binance.api.client.domain.general.Asset;
+import com.binance.api.client.domain.general.TradeFee;
 import com.binance.api.client.domain.market.AggTrade;
 import com.binance.api.client.domain.market.BookTicker;
 import com.binance.api.client.domain.market.Candlestick;
@@ -278,6 +279,9 @@ public interface BinanceApiRestClient {
    * @param asset the list of assets to convert
    */
   DustTransferResponse dustTranfer(List<String> asset);
+
+  List<TradeFee> tradeFee(String symbol);
+  List<TradeFee> tradeFee();
 
   /**
    * Fetch account deposit history.

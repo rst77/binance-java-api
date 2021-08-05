@@ -5,6 +5,7 @@ import java.io.Serializable;
 import com.binance.api.client.constant.BinanceApiConstants;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
@@ -18,6 +19,8 @@ public class TickerEvent  implements Serializable {
 
     @JsonProperty("E")
     private long eventTime;
+
+    private Date eventTimeDate;
 
     @JsonProperty("s")
     private String symbol;
@@ -96,6 +99,7 @@ public class TickerEvent  implements Serializable {
 
     public void setEventTime(long eventTime) {
         this.eventTime = eventTime;
+        this.eventTimeDate = new Date(eventTime);
     }
 
     public String getSymbol() {
@@ -266,8 +270,8 @@ public class TickerEvent  implements Serializable {
         return totalTradedBaseAssetVolume;
     }
 
-    public int getTotalTradedBaseAssetVolumeInteger() {
-        return Integer.parseInt( totalTradedBaseAssetVolume );
+    public Double getTotalTradedBaseAssetVolumeDouble() {
+        return Double.valueOf( totalTradedBaseAssetVolume );
     }
 
     public void setTotalTradedBaseAssetVolume(String totalTradedBaseAssetVolume) {
@@ -278,8 +282,8 @@ public class TickerEvent  implements Serializable {
         return totalTradedQuoteAssetVolume;
     }
 
-    public int getTotalTradedQuoteAssetVolumeInteger() {
-        return Integer.parseInt( totalTradedQuoteAssetVolume );
+    public Double getTotalTradedQuoteAssetVolumeDouble() {
+        return Double.valueOf( totalTradedQuoteAssetVolume );
     }
 
     public void setTotalTradedQuoteAssetVolume(String totalTradedQuoteAssetVolume) {
@@ -330,7 +334,7 @@ public class TickerEvent  implements Serializable {
     public String toString() {
         return new ToStringBuilder(this, BinanceApiConstants.TO_STRING_BUILDER_STYLE)
                 .append("eventType", eventType)
-                .append("eventTime", eventTime)
+                .append("eventTimeDate", new Date(eventTime))
                 .append("symbol", symbol)
                 .append("priceChange", priceChange)
                 .append("priceChangePercent", priceChangePercent)

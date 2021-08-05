@@ -75,6 +75,6 @@ public class AggTradesCacheExample {
   }
 
   public static void main(String[] args) {
-    new AggTradesCacheExample("ETHBTC");
+    new AggTradesCacheExample("BTCUSDT");
   }
 }

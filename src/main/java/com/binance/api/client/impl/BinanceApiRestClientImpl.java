@@ -7,6 +7,7 @@ import com.binance.api.client.domain.account.*;
 import com.binance.api.client.domain.account.request.*;
 import com.binance.api.client.domain.general.Asset;
 import com.binance.api.client.domain.general.ExchangeInfo;
+import com.binance.api.client.domain.general.TradeFee;
 import com.binance.api.client.domain.market.*;
 import retrofit2.Call;
 
@@ -237,6 +238,16 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
 	@Override
 	public DustTransferResponse dustTranfer(List<String> asset) {
 		return executeSync(binanceApiService.dustTransfer(asset, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
+	}
+
+	@Override
+	public List<TradeFee> tradeFee(String symbol) {
+		return executeSync(binanceApiService.tradeFee(symbol, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
+	}
+
+	@Override
+	public List<TradeFee> tradeFee() {
+		return executeSync(binanceApiService.tradeFee(BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, System.currentTimeMillis()));
 	}
 
 	@Override

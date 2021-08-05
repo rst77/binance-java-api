@@ -5,6 +5,7 @@ import com.binance.api.client.BinanceApiWebSocketClient;
 import com.binance.api.client.domain.market.CandlestickInterval;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Market data stream endpoints examples.
@@ -17,12 +18,12 @@ public class MarketDataStreamExample {
     BinanceApiWebSocketClient client = BinanceApiClientFactory.newInstance().newWebSocketClient();
 
     // Listen for aggregated trade events for ETH/BTC
-    client.onAggTradeEvent("ethbtc", response -> System.out.println(response));
+    client.onAggTradeEvent("btcusdt,ethusdt,adausdt,dotusdt,iotausdt,xlmusdt,sandbtc,scbtc,sfpbtc,sklbtc", response -> System.out.println((new Date(response.getEventTime())) + " // " + response.toString()));
 
     // Listen for changes in the order book in ETH/BTC
-    client.onDepthEvent("ethbtc", response -> System.out.println(response));
+    //client.onDepthEvent("ethbtc", response -> System.out.println(response));
 
     // Obtain 1m candlesticks in real-time for ETH/BTC
-    client.onCandlestickEvent("ethbtc", CandlestickInterval.ONE_MINUTE, response -> System.out.println(response));
+    //client.onCandlestickEvent("btcusdt", CandlestickInterval.ONE_MINUTE, response -> System.out.println(response));
   }
 }
